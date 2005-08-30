@@ -1,0 +1,25 @@
+Index: e-smith-mysql/e-smith-mysql.spec
+diff -u e-smith-mysql/root/etc/rc.d/init.d/mysql.init:1.7 e-smith-mysql/root/etc/rc.d/init.d/mysql.init:1.8
+--- e-smith-mysql/root/etc/rc.d/init.d/mysql.init:1.7	Tue Jan  6 11:49:58 2004
++++ e-smith-mysql/root/etc/rc.d/init.d/mysql.init	Fri Apr 15 11:13:11 2005
+@@ -41,18 +41,16 @@
+     F=$(basename $link | sed s/S[0-9][0-9]//)
+     case $F in
+         *.sql)
+-        action "Loading $F into mysql" /usr/bin/mysql < $link
++        action "Loading $F into mysql" /usr/bin/mysql < $link && /bin/rm $link
+         ;;
+         *)
+-        action "Loading $F into mysql" $link
++        action "Loading $F into mysql" $link && /bin/rm $link
+         ;;
+     esac
+     # Record any failure for the final return value.
+     if [ $? -ne 0 ]; then
+         exit_value=1
+     fi
+-    # Remove the link regardless, don't leave it behind to fail again.
+-    rm -f $link
+ done 
+ 
+ exit $exit_value

@@ -1,0 +1,21 @@
+Index: e-smith-mysql/e-smith-mysql.spec
+diff -u e-smith-mysql/root/etc/e-smith/templates/root/.my.cnf/55password:1.1.1.1 e-smith-mysql/root/etc/e-smith/templates/root/.my.cnf/55password:1.2
+--- e-smith-mysql/root/etc/e-smith/templates/root/.my.cnf/55password:1.1.1.1	Wed Jun  5 17:31:13 2002
++++ e-smith-mysql/root/etc/e-smith/templates/root/.my.cnf/55password	Fri Apr 15 11:29:21 2005
+@@ -1,13 +1,9 @@
+ {
+     #----------------------------------------------------------
+-    # Read LDAP password
++    # Read (and possibly create) DAP password
+     #----------------------------------------------------------
+ 
+-    open (PW, "/etc/openldap/ldap.pw") 
+-	|| die "Could not read LDAP password.\n";
+-    my $pw = <PW>;
+-    chomp ($pw);
+-    close PW;
++    use esmith::util;
++    my $pw = esmith::util::LdapPassword;
+     $OUT .= "password=$pw";
+ }
+-
