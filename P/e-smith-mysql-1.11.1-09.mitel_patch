@@ -1,0 +1,9 @@
+Index: e-smith-mysql/e-smith-mysql.spec
+diff -u e-smith-mysql/root/etc/e-smith/events/actions/mysql-delete-db-files:1.1 e-smith-mysql/root/etc/e-smith/events/actions/mysql-delete-db-files:1.2
+--- e-smith-mysql/root/etc/e-smith/events/actions/mysql-delete-db-files:1.1	Wed Apr 13 14:40:28 2005
++++ e-smith-mysql/root/etc/e-smith/events/actions/mysql-delete-db-files	Wed Aug 31 13:51:50 2005
+@@ -1,3 +1,3 @@
+ #! /bin/sh
+ 
+-cd /var/lib/mysql && find . -type f | xargs rm
++cd /var/lib/mysql && find . -type f | xargs rm -f
