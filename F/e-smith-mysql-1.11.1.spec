@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.11.1
-%define release 10sme02
+%define release 10sme03
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -18,6 +18,7 @@ Patch6: e-smith-mysql-1.11.1-09.mitel_patch
 Patch7: e-smith-mysql-1.11.1-10.mitel_patch
 Patch100: e-smith-mysql-1.11.1-fixprivs.patch
 Patch101: e-smith-mysql-1.11.1-fixprivs.patch2
+Patch102: e-smith-mysql-1.11.1-fixprivs.patch3
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -26,6 +27,10 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Fri Nov 18 2005 Gordon Rowell <gordonr@gormand.com.au>
+- [1.11.1-10sme03]
+- And put the template in the correct directory [SF: 1234003]
+
 * Fri Nov 18 2005 Gordon Rowell <gordonr@gormand.com.au>
 - [1.11.1-10sme02]
 - As before, but as a template expansion [SF: 1234003]
@@ -605,6 +610,7 @@ mysql.
 %patch7 -p1
 %patch100 -p1
 %patch101 -p1
+%patch102 -p1
 
 %build
 for i in \
