@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.11.1
-%define release 10
+%define release 10sme01
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -16,6 +16,7 @@ Patch4: e-smith-mysql-1.11.1-06.mitel_patch
 Patch5: e-smith-mysql-1.11.1-08.mitel_patch
 Patch6: e-smith-mysql-1.11.1-09.mitel_patch
 Patch7: e-smith-mysql-1.11.1-10.mitel_patch
+Patch100: e-smith-mysql-1.11.1-fixprivs.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -24,6 +25,10 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Fri Nov 18 2005 Gordon Rowell <gordonr@gormand.com.au>
+- [1.11.1-10sme01]
+- Call mysql fix_privilege_tables in mysql.init [SF: 1234003]
+
 * Tue Nov 15 2005 Gordon Rowell <gordonr@e-smith.com>
 - [1.11.1-10]
 - Reset the format of the MySQL root password for old dumps [SF: 1325378]
@@ -593,6 +598,7 @@ mysql.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch100 -p1
 
 %build
 for i in \
@@ -633,6 +639,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/e-smith/genfilelist $RPM_BUILD_ROOT \
     --dir /var/run/mysqld 'attr(0755,mysql,mysql)' \
     --file /var/service/mysqld/run 'attr(0755,root,root)' \
+    --file /var/service/mysqld/fix_privilege_tables 'attr(0755,root,root)' \
     --file /var/service/mysqld/control/t 'attr(0750,root,root)' \
     --file /var/service/mysqld/control/d 'attr(0750,root,root)' \
     --file /var/service/mysqld/control/i 'attr(0750,root,root)' \

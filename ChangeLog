@@ -11,3 +11,7 @@ Fri Nov 18 17:10:08 2005                       Gordon Rowell (gordonr)
 
 Sync with Mitel
 ----------------------------------------------------------------------
+Fri Nov 18 18:32:04 2005                       Gordon Rowell (gordonr)
+
+Call fix_privilege_tables in mysql.init
+----------------------------------------------------------------------
