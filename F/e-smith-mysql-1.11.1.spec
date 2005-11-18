@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.11.1
-%define release 09
+%define release 10
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -15,6 +15,7 @@ Patch3: e-smith-mysql-1.11.1-05.mitel_patch
 Patch4: e-smith-mysql-1.11.1-06.mitel_patch
 Patch5: e-smith-mysql-1.11.1-08.mitel_patch
 Patch6: e-smith-mysql-1.11.1-09.mitel_patch
+Patch7: e-smith-mysql-1.11.1-10.mitel_patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -23,6 +24,10 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Tue Nov 15 2005 Gordon Rowell <gordonr@e-smith.com>
+- [1.11.1-10]
+- Reset the format of the MySQL root password for old dumps [SF: 1325378]
+
 * Wed Aug 31 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.11.1-09]
 - Avoid error from db-delete action if db files are not present
@@ -587,6 +592,7 @@ mysql.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 for i in \
