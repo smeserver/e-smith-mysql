@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.11.1
-%define release 11
+%define release 12
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -16,7 +16,8 @@ Patch4: e-smith-mysql-1.11.1-06.mitel_patch
 Patch5: e-smith-mysql-1.11.1-08.mitel_patch
 Patch6: e-smith-mysql-1.11.1-09.mitel_patch
 Patch7: e-smith-mysql-1.11.1-10.mitel_patch
-Packager: e-smith developers <bugs@e-smith.com>
+Patch8: e-smith-mysql-1.11.1-fixprivs.patch
+Packager: SME Server developers <bugteam@contribs.org>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base, mysql, e-smith-packetfilter >= 1.9.3
@@ -24,6 +25,9 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Wed Nov 30 2005 Gordon Rowell <gordonr@gormand.com.au> 1.11.1-12
+- Call mysql fix_privilege_tables in mysql.init [SME: 73]
+
 * Wed Nov 30 2005 Gordon Rowell <gordonr@gormand.com.au> 1.11.1-11
 - Bump release number only
 
@@ -596,6 +600,7 @@ mysql.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 for i in \
