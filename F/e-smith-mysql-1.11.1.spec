@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.11.1
-%define release 13
+%define release 14
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -18,6 +18,7 @@ Patch6: e-smith-mysql-1.11.1-09.mitel_patch
 Patch7: e-smith-mysql-1.11.1-10.mitel_patch
 Patch8: e-smith-mysql-1.11.1-fixprivs.patch
 Patch9: e-smith-mysql-1.11.1-fixprivs.patch2 
+Patch10: e-smith-mysql-1.11.1-restore+fix_privilege.patch
 Packager: SME Server developers <bugteam@contribs.org>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -26,6 +27,12 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Sun Jan  1 2006 Charlie Brady <charlieb@e-smith.com> 1.11.1-14
+- Ensure that mysql is restarted after restore, and avoid race conditions
+  during mysqld restart during fix_privilege_tables. [SME: 73]
+- Remove unnecessary mkdirs in build section - they're done by createlinks
+  script.
+
 * Wed Dec 14 2005 Gordon Rowell <gordonr@gormand.com.au> 1.11.1-13
 - Call fix_privilege_tables much earlier and call mysqladmin shutdown 
   after doing so - Thanks Paul Floor [SME: 73]
@@ -607,19 +614,9 @@ mysql.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 %build
-for i in \
-    pre-backup \
-    post-backup \
-    post-install \
-    post-upgrade \
-    email-update \
-    timezone-update \
-    bootstrap-console-save
-do
-    mkdir -p root/etc/e-smith/events/$i
-done
 mkdir -p root/etc/e-smith/sql/init
 perl createlinks
 
