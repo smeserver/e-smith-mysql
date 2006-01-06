@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.11.1
-%define release 14
+%define release 15
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -27,6 +27,10 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Fri Jan  6 2006 Gordon Rowell <gordonr@gormand.com.au> 1.11.1-15
+- Remove explicit permission setting for /home/e-smith/db from
+  genfilelist call [SME: 371]
+
 * Sun Jan  1 2006 Charlie Brady <charlieb@e-smith.com> 1.11.1-14
 - Ensure that mysql is restarted after restore, and avoid race conditions
   during mysqld restart during fix_privilege_tables. [SME: 73]
@@ -650,7 +654,6 @@ rm -rf $RPM_BUILD_ROOT
     --file /var/service/mysqld/control/q 'attr(0750,root,root)' \
     --file /var/service/mysqld/log/run 'attr(0755,root,root)' \
     --dir '/var/log/mysqld' 'attr(2750,smelog,smelog)' \
-    --dir '/home/e-smith/db' 'attr(0750,root,root)' \
     --dir '/home/e-smith/db/mysql' 'attr(0750,root,root)' \
     > %{name}-%{version}-filelist
 echo "%doc COPYING"          >> %{name}-%{version}-filelist
