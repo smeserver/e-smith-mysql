@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.11.1
-%define release 15
+%define release 16
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -22,11 +22,17 @@ Patch10: e-smith-mysql-1.11.1-restore+fix_privilege.patch
 Packager: SME Server developers <bugteam@contribs.org>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
-Requires: e-smith-base, mysql, e-smith-packetfilter >= 1.9.3
+Requires: mysql-server
+Requires: mysql
+Requires: e-smith-base
 Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Mon Feb 13 2006 Charlie Brady <charlie_brady@mitel.com> 1.11.1-16
+- Update dependencies to include mysql-server RPM. Remove obsolete
+  dependency on e-smith-packetfilter. [SME: 737]
+
 * Fri Jan  6 2006 Gordon Rowell <gordonr@gormand.com.au> 1.11.1-15
 - Remove explicit permission setting for /home/e-smith/db from
   genfilelist call [SME: 371]
