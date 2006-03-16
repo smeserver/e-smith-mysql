@@ -1,24 +1,13 @@
 Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
-%define version 1.11.1
-%define release 16
+%define version 1.12.0
+%define release 01
 Version: %{version}
 Release: %{release}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Patch0: e-smith-mysql-1.11.1-02.mitel_patch
-Patch1: e-smith-mysql-1.11.1-03.mitel_patch
-Patch2: e-smith-mysql-1.11.1-04.mitel_patch
-Patch3: e-smith-mysql-1.11.1-05.mitel_patch
-Patch4: e-smith-mysql-1.11.1-06.mitel_patch
-Patch5: e-smith-mysql-1.11.1-08.mitel_patch
-Patch6: e-smith-mysql-1.11.1-09.mitel_patch
-Patch7: e-smith-mysql-1.11.1-10.mitel_patch
-Patch8: e-smith-mysql-1.11.1-fixprivs.patch
-Patch9: e-smith-mysql-1.11.1-fixprivs.patch2 
-Patch10: e-smith-mysql-1.11.1-restore+fix_privilege.patch
 Packager: SME Server developers <bugteam@contribs.org>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -29,6 +18,9 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Thu Mar 16 2006 Gordon Rowell <gordonr@gormand.com.au> 1.12.0-01
+- Roll stable stream version. [SME: 1016]
+
 * Mon Feb 13 2006 Charlie Brady <charlie_brady@mitel.com> 1.11.1-16
 - Update dependencies to include mysql-server RPM. Remove obsolete
   dependency on e-smith-packetfilter. [SME: 737]
@@ -614,17 +606,6 @@ mysql.
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
