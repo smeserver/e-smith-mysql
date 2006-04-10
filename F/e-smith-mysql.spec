@@ -2,12 +2,13 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.12.0
-%define release 01
+%define release 02
 Version: %{version}
 Release: %{release}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
+Patch0: e-smith-mysql-1.12.0-setpassword.patch
 Packager: SME Server developers <bugteam@contribs.org>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -18,6 +19,10 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Mon Apr 10 2006 Gordon Rowell <gordonr@gormand.com.au> 1.12.0-02
+- Move expansion of user table into set.password so it works
+  for command line runs as well as db restores [SME: 1229]
+
 * Thu Mar 16 2006 Gordon Rowell <gordonr@gormand.com.au> 1.12.0-01
 - Roll stable stream version. [SME: 1016]
 
@@ -606,6 +611,7 @@ mysql.
 
 %prep
 %setup
+%patch0 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
