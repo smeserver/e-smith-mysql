@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.12.0
-%define release 04
+%define release 05
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -10,6 +10,7 @@ Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-mysql-1.12.0-setpassword.patch2
 Patch1: e-smith-mysql-1.12.0-innodb-optional.patch
+Patch2: e-smith-mysql-1.12.0-install_db.patch
 Packager: SME Server developers <bugteam@contribs.org>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -20,6 +21,9 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Tue Jun 27 2006 Filippo Carletti <carletti@mobilia.it> 1.12.0-05
+- Execute mysql_install_db using sh [SME: 1654]
+
 * Sun Apr 30 2006 Charlie Brady <charlie_brady@mitel.com> 1.12.0-04
 - Make innodb optional, and configure it as recommended, if enabled.
   [SME: 1013]
@@ -621,6 +625,7 @@ mysql.
 %setup
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
