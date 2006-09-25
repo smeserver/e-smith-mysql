@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.12.0
-%define release 06
+%define release 07
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -12,6 +12,7 @@ Patch0: e-smith-mysql-1.12.0-setpassword.patch2
 Patch1: e-smith-mysql-1.12.0-flushprivssemicolon.patch 
 Patch2: e-smith-mysql-1.12.0-innodb-optional.patch
 Patch3: e-smith-mysql-1.12.0-install_db.patch
+Patch4: e-smith-mysql-1.12.0.disabled_pre_backup.patch
 Packager: SME Server developers <bugteam@contribs.org>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -22,6 +23,9 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Mon Sep 25 2006 Charlie Brady <charlie_brady@mitel.com> 1.12.0-07
+- Fix pre-backup failure if mysqld is disabled in config db. [SME: 1937]
+
 * Tue Jun 27 2006 Filippo Carletti <carletti@mobilia.it> 1.12.0-06
 - Execute mysql_install_db using sh [SME: 1654]
 
@@ -631,6 +635,7 @@ mysql.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
