@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.12.0
-%define release 07
+%define release 08
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -13,6 +13,7 @@ Patch1: e-smith-mysql-1.12.0-flushprivssemicolon.patch
 Patch2: e-smith-mysql-1.12.0-innodb-optional.patch
 Patch3: e-smith-mysql-1.12.0-install_db.patch
 Patch4: e-smith-mysql-1.12.0.disabled_pre_backup.patch
+Patch5: e-smith-mysql-1.12.0.failed_restore.patch
 Packager: SME Server developers <bugteam@contribs.org>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -23,6 +24,9 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Thu Nov  9 2006 Charlie Brady <charlie_brady@mitel.com> 1.12.0-08
+- Ensure that failed restore is detected during mysql.init. [SME: 1652]
+
 * Mon Sep 25 2006 Charlie Brady <charlie_brady@mitel.com> 1.12.0-07
 - Fix pre-backup failure if mysqld is disabled in config db. [SME: 1937]
 
@@ -636,6 +640,7 @@ mysql.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
