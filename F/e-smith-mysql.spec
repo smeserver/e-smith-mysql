@@ -2,9 +2,10 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.12.0
-%define release 08
+%define release 9
 Version: %{version}
-Release: %{release}
+Release: %smerelease %{release}
+Packager: %{_packager}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
@@ -14,7 +15,6 @@ Patch2: e-smith-mysql-1.12.0-innodb-optional.patch
 Patch3: e-smith-mysql-1.12.0-install_db.patch
 Patch4: e-smith-mysql-1.12.0.disabled_pre_backup.patch
 Patch5: e-smith-mysql-1.12.0.failed_restore.patch
-Packager: SME Server developers <bugteam@contribs.org>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: mysql-server
@@ -24,6 +24,10 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
+- Update to new release naming.  No functional changes.
+- Make Packager generic
+
 * Thu Nov  9 2006 Charlie Brady <charlie_brady@mitel.com> 1.12.0-08
 - Ensure that failed restore is detected during mysql.init. [SME: 1652]
 
