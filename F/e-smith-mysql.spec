@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.12.0
-%define release 9
+%define release 10
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -15,6 +15,7 @@ Patch2: e-smith-mysql-1.12.0-innodb-optional.patch
 Patch3: e-smith-mysql-1.12.0-install_db.patch
 Patch4: e-smith-mysql-1.12.0.disabled_pre_backup.patch
 Patch5: e-smith-mysql-1.12.0.failed_restore.patch
+Patch6: e-smith-mysql-1.12.0-split_backup_db.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: mysql-server
@@ -24,6 +25,9 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Wed Dec 27 2006 Shad L. Lords <slords@mail.com> 1.12.0-10
+- Split backups out by database name [SME: 1677]
+
 * Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
 - Update to new release naming.  No functional changes.
 - Make Packager generic
@@ -645,6 +649,7 @@ mysql.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
