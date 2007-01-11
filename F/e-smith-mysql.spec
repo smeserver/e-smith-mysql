@@ -27,7 +27,7 @@ AutoReqProv: no
 
 %changelog
 * Thu Jan 11 2007 Shad L. Lords <slords@mail.com> 1.12.0-11
-- Conditionally move user to mysql section. [SME: 1474]
+- Move user to mysql section. [SME: 1474]
 
 * Wed Dec 27 2006 Shad L. Lords <slords@mail.com> 1.12.0-10
 - Split backups out by database name [SME: 1677]
