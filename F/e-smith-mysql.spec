@@ -26,7 +26,7 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
-* Thu Jan 11 2006 Shad L. Lords <slords@mail.com> 1.12.0-11
+* Thu Jan 11 2007 Shad L. Lords <slords@mail.com> 1.12.0-11
 - Conditionally move user to mysql section. [SME: 1474]
 
 * Wed Dec 27 2006 Shad L. Lords <slords@mail.com> 1.12.0-10
