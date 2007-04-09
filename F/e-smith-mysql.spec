@@ -28,7 +28,7 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
-* Mon Apr 9 2007 Stephen Noble <Support@dungog.net> 1.12.0-12
+* Mon Apr 9 2007 Stephen Noble <Support@dungog.net> 1.12.0-13
 - Add db settings to max_allowed_packet in my.cnf [SME: 2149]
 
 * Mon Apr 9 2007 Stephen Noble <Support@dungog.net> 1.12.0-12
