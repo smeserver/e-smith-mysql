@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.12.0
-%define release 11
+%define release 12
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -17,6 +17,7 @@ Patch4: e-smith-mysql-1.12.0.disabled_pre_backup.patch
 Patch5: e-smith-mysql-1.12.0.failed_restore.patch
 Patch6: e-smith-mysql-1.12.0-split_backup_db.patch
 Patch7: e-smith-mysql-1.12.0-mysqluser.patch
+Patch8: e-smith-mysql-1.12.0-max_allowed_packet.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: mysql-server
@@ -26,6 +27,9 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Mon Apr 9 2007 Stephen Noble <Support@dungog.net> 1.12.0-12
+- Add to my.cnf [SME: 2149]
+
 * Thu Jan 11 2007 Shad L. Lords <slords@mail.com> 1.12.0-11
 - Move user to mysql section. [SME: 1474]
 
@@ -655,6 +659,7 @@ mysql.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
