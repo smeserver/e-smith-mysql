@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.12.0
-%define release 12
+%define release 13
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -18,6 +18,7 @@ Patch5: e-smith-mysql-1.12.0.failed_restore.patch
 Patch6: e-smith-mysql-1.12.0-split_backup_db.patch
 Patch7: e-smith-mysql-1.12.0-mysqluser.patch
 Patch8: e-smith-mysql-1.12.0-max_allowed_packet.patch
+Patch9: e-smith-mysql-1.12.0-max_allowed_packet2.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: mysql-server
@@ -27,6 +28,9 @@ Requires: e-smith-lib >= 1.15.1-19
 AutoReqProv: no
 
 %changelog
+* Mon Apr 9 2007 Stephen Noble <Support@dungog.net> 1.12.0-12
+- Add db settings to max_allowed_packet in my.cnf [SME: 2149]
+
 * Mon Apr 9 2007 Stephen Noble <Support@dungog.net> 1.12.0-12
 - Add to my.cnf [SME: 2149]
 
@@ -660,6 +664,7 @@ mysql.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
