@@ -4,8 +4,7 @@ Name: %{name}
 %define version 1.12.0
 %define release 14
 Version: %{version}
-Release: %smerelease %{release}
-Packager: %{_packager}
+Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
@@ -26,9 +25,13 @@ Requires: mysql-server
 Requires: mysql
 Requires: e-smith-base
 Requires: e-smith-lib >= 1.15.1-19
+BuildRequires: e-smith-devtools >= 1.13.1-03
 AutoReqProv: no
 
 %changelog
+* Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
+- Clean up spec so package can be built by koji/plague
+
 * Sat Apr 21 2007 Shad L. Lords <slords@mail.com> 1.12.0-14
 - Force upgrade script to run even with errors. [SME: 2530]
 
