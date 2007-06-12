@@ -1,0 +1,10 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-mysql-1.12.0/root/etc/e-smith/templates/var/service/mysqld/set.password mezzanine_patched_e-smith-mysql-1.12.0/root/etc/e-smith/templates/var/service/mysqld/set.password
+--- e-smith-mysql-1.12.0/root/etc/e-smith/templates/var/service/mysqld/set.password	2006-04-18 13:19:18.798121882 +1000
++++ mezzanine_patched_e-smith-mysql-1.12.0/root/etc/e-smith/templates/var/service/mysqld/set.password	2006-04-18 13:18:51.858765704 +1000
+@@ -7,5 +7,5 @@
+     $OUT .= "ALTER TABLE user MODIFY Password char(41) NOT NULL default '';\n";
+     $OUT .= "UPDATE user SET password=password('$pw') WHERE user='root';\n";
+     $OUT .= "DELETE FROM user WHERE user='';\n";
+-    $OUT .= "FLUSH PRIVILEGES\n";
++    $OUT .= "FLUSH PRIVILEGES;\n";
+ }
