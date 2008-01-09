@@ -2,7 +2,7 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.12.0
-%define release 14
+%define release 15
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -29,6 +29,9 @@ BuildRequires: e-smith-devtools >= 1.13.1-03
 AutoReqProv: no
 
 %changelog
+* Wed Jan 09 2008 Stephen Noble <support@dungog.net> 1.12.0-15
+- quote "$1" in post uninstall script [SME: 349]
+
 * Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
 - Clean up spec so package can be built by koji/plague
 
@@ -722,7 +725,7 @@ rm -rf $RPM_BUILD_ROOT
 [ -e /etc/rc.d/init.d/mysqld ] || ln -s ./mysql /etc/rc.d/init.d/mysqld
 
 %postun
-if [ $1 == 0 ]; then
+if [ "$1" == 0 ]; then
   [ -l /etc/rc.d/init.d/mysqld ] && rm /etc/rc.d/init.d/mysqld
 fi
 
