@@ -1,6 +1,0 @@
-diff -Nur -x '*.orig' -x '*.rej' e-smith-mysql-1.12.0/root/etc/e-smith/templates/etc/my.cnf/011max_allowed_packet mezzanine_patched_e-smith-mysql-1.12.0/root/etc/e-smith/templates/etc/my.cnf/011max_allowed_packet
---- e-smith-mysql-1.12.0/root/etc/e-smith/templates/etc/my.cnf/011max_allowed_packet	2007-04-09 09:12:45.000000000 -0600
-+++ mezzanine_patched_e-smith-mysql-1.12.0/root/etc/e-smith/templates/etc/my.cnf/011max_allowed_packet	2007-04-09 09:11:56.000000000 -0600
-@@ -1 +1 @@
--max_allowed_packet=16M
-+max_allowed_packet={ $mysqld{MaxAllowedPacket} || '16M' } 
