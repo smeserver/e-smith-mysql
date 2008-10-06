@@ -20,7 +20,7 @@ AutoReqProv: no
 
 %changelog
 * Mon Oct 06 2008 Charlie Brady <charlie_brady@mitel.com> 1.13.0-2
-- Capture mysql.init error logs to syslog.
+- Capture mysql.init error logs to syslog. [SME: 2918]
 
 * Mon Oct 6 2008 Stephen Noble <support@dungog.net> 1.13.0-1
 - Roll new dev stream [SME: 4627]
