@@ -1,24 +1,13 @@
 Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
-%define version 1.12.0
-%define release 15
+%define version 1.13.0
+%define release 1
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Patch0: e-smith-mysql-1.12.0-setpassword.patch2
-Patch1: e-smith-mysql-1.12.0-flushprivssemicolon.patch 
-Patch2: e-smith-mysql-1.12.0-innodb-optional.patch
-Patch3: e-smith-mysql-1.12.0-install_db.patch
-Patch4: e-smith-mysql-1.12.0.disabled_pre_backup.patch
-Patch5: e-smith-mysql-1.12.0.failed_restore.patch
-Patch6: e-smith-mysql-1.12.0-split_backup_db.patch
-Patch7: e-smith-mysql-1.12.0-mysqluser.patch
-Patch8: e-smith-mysql-1.12.0-max_allowed_packet.patch
-Patch9: e-smith-mysql-1.12.0-max_allowed_packet2.patch
-Patch10: e-smith-mysql-1.12.0-force_upgrade.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: mysql-server
@@ -29,6 +18,9 @@ BuildRequires: e-smith-devtools >= 1.13.1-03
 AutoReqProv: no
 
 %changelog
+* Mon Oct 6 2008 Stephen Noble <support@dungog.net> 1.13.0-1
+- Roll new dev stream [SME: 4627]
+
 * Wed Jan 09 2008 Stephen Noble <support@dungog.net> 1.12.0-15
 - quote "$1" in post uninstall script [SME: 349]
 
@@ -665,16 +657,6 @@ mysql.
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch10 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
