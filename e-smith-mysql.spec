@@ -2,12 +2,13 @@ Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 1.13.0
-%define release 1
+%define release 2
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
+Patch0: e-smith-mysql-1.13.0-logging.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: mysql-server
@@ -18,6 +19,9 @@ BuildRequires: e-smith-devtools >= 1.13.1-03
 AutoReqProv: no
 
 %changelog
+* Mon Oct 06 2008 Charlie Brady <charlie_brady@mitel.com> 1.13.0-2
+- Capture mysql.init error logs to syslog.
+
 * Mon Oct 6 2008 Stephen Noble <support@dungog.net> 1.13.0-1
 - Roll new dev stream [SME: 4627]
 
@@ -657,6 +661,7 @@ mysql.
 
 %prep
 %setup
+%patch0 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
