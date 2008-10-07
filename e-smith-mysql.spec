@@ -1,14 +1,15 @@
+# $Id: e-smith-mysql.spec,v 1.6 2008/10/07 18:44:56 slords Exp $
+
 Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
-%define version 1.13.0
-%define release 2
+%define version 2.2.0
+%define release 1
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Patch0: e-smith-mysql-1.13.0-logging.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: mysql-server
@@ -19,6 +20,9 @@ BuildRequires: e-smith-devtools >= 1.13.1-03
 AutoReqProv: no
 
 %changelog
+* Tue Oct 7 2008 Shad L. Lords <slords@mail.com> 2.2.0-1.sme
+- Roll new stream to separate sme7/sme8 trees [SME: 4633]
+
 * Mon Oct 06 2008 Charlie Brady <charlie_brady@mitel.com> 1.13.0-2
 - Capture mysql.init error logs to syslog. [SME: 2918]
 
@@ -661,7 +665,6 @@ mysql.
 
 %prep
 %setup
-%patch0 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
