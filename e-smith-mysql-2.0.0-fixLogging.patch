@@ -1,0 +1,39 @@
+--- e-smith-mysql-2.0.0/root/etc/e-smith/templates/etc/my.cnf/010mysqld-log-error.fixLogging	2003-12-18 23:10:32.000000000 +0100
++++ e-smith-mysql-2.0.0/root/etc/e-smith/templates/etc/my.cnf/010mysqld-log-error	2009-02-23 11:35:51.000000000 +0100
+@@ -1,18 +1 @@
+-{
+-    # Check that log-error option is supported (mysql > 4.0.10)
+-    # and save result in a package variable
+-    my $mysqld = "/usr/libexec/mysqld";
+-    if (-f "/usr/sbin/mysqld") {
+-	$mysqld = "/usr/sbin/mysqld";
+-    }
+-    open (MYSQLD, "$mysqld --help |")
+-	or return "# WARN: can't exec mysqld; skipping log-error setup";
+-    $LogError = grep {/log-error/} <MYSQLD>;
+-    close MYSQLD;
+-    if ($LogError) {
+-	$OUT = "log-error=/var/log/mysqld.log";
+-    }
+-    else {
+-	$OUT = "# log-error not yet supported in our mysqld version";
+-    }
+-}
++log-error=/var/log/mysqld.log
+--- e-smith-mysql-2.0.0/root/etc/e-smith/templates/etc/my.cnf/042log-error	2003-12-24 16:45:42.000000000 +0100
++++ /dev/null	2009-02-23 11:37:43.000000000 +0100
+@@ -1,14 +0,0 @@
+-{   
+-    # This logging control is required for older versions of mysql (< 4.0.10)
+-    # where logging is controlled by the safe_mysqld/mysqld_safe script.  It
+-    # should be moved to the [mysqld] section for newer versions (>= 4.0.10)
+-    # where logging is controlled by the mysqld binary.  
+-    # Allow backwards compatibility for err-log (mysql < 4.0.? )
+-    # Use $LogError result from 010mysqld-log-error fragment
+-    if ($LogError) {
+-	$OUT = "# logging controlled in [mysqld] section for mysql >= 4.0.10";
+-    }
+-    else {
+-	$OUT = "err-log=/var/log/mysqld.log";
+-    }
+-}
