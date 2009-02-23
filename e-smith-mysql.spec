@@ -1,16 +1,16 @@
-# $Id: e-smith-mysql.spec,v 1.7 2008/12/02 15:19:34 snetram Exp $
+# $Id: e-smith-mysql.spec,v 1.8 2009/02/23 13:01:35 snetram Exp $
 
 Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 2.2.0
-%define release 2
+%define release 3
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Patch0: e-smith-mysql-2.2.0-FixErrorLogDetectionAlgorithm.patch
+Patch0: e-smith-mysql-2.2.0-fixLogging.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: mysql-server
@@ -21,6 +21,9 @@ BuildRequires: e-smith-devtools >= 1.13.1-03
 AutoReqProv: no
 
 %changelog
+* Mon Feb 23 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 2.2.0-3.sme
+- Rework log-error logic [SME: 4807]
+
 * Tue Dec 2 2008 Jonathan Martens <smeserver-contribs@snetram.nl> 2.2.0-2.sme
 - Fix log-error detection algorithm [SME: 4807]
 
