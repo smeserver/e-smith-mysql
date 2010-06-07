@@ -1,10 +1,10 @@
-# $Id: e-smith-mysql.spec,v 1.5 2009/02/23 13:01:01 snetram Exp $
+# $Id: e-smith-mysql.spec,v 1.6 2010/06/07 14:38:16 filippocarletti Exp $
 
 Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 2.0.0
-%define release 3
+%define release 4
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -21,6 +21,9 @@ BuildRequires: e-smith-devtools >= 1.13.1-03
 AutoReqProv: no
 
 %changelog
+* Mon Jun  7 2010 Filippo Carletti <filippo.carletti@gmail.com> 2.0.0-4.sme
+- Fix %postun typo [SME: 6030]
+
 * Mon Feb 23 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-3.sme
 - Rework log-error logic [SME: 4807]
 
@@ -718,7 +721,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun
 if [ "$1" == 0 ]; then
-  [ -l /etc/rc.d/init.d/mysqld ] && rm /etc/rc.d/init.d/mysqld
+  [ -L /etc/rc.d/init.d/mysqld ] && rm /etc/rc.d/init.d/mysqld || :
 fi
 
 %files -f %{name}-%{version}-filelist
