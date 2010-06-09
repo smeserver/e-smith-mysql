@@ -1,4 +1,4 @@
-# $Id: e-smith-mysql.spec,v 1.6 2010/06/07 14:38:16 filippocarletti Exp $
+# $Id: e-smith-mysql.spec,v 1.7 2010/06/09 23:05:16 wellsi Exp $
 
 Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
@@ -22,7 +22,7 @@ AutoReqProv: no
 
 %changelog
 * Mon Jun  7 2010 Filippo Carletti <filippo.carletti@gmail.com> 2.0.0-4.sme
-- Fix %postun typo [SME: 6030]
+- Fix %postun typo [SME: 6043]
 
 * Mon Feb 23 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-3.sme
 - Rework log-error logic [SME: 4807]
