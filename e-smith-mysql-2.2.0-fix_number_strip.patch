@@ -1,0 +1,12 @@
+diff -up e-smith-mysql-2.2.0/root/etc/rc.d/init.d/mysql.init.fix_number_strip e-smith-mysql-2.2.0/root/etc/rc.d/init.d/mysql.init
+--- e-smith-mysql-2.2.0/root/etc/rc.d/init.d/mysql.init.fix_number_strip	2008-10-07 11:36:21.000000000 -0600
++++ e-smith-mysql-2.2.0/root/etc/rc.d/init.d/mysql.init	2010-10-28 12:11:32.000000000 -0600
+@@ -42,7 +42,7 @@ do
+ 	export HOME
+ 	for link in $(find /etc/e-smith/sql/init -type f -o -type l | sort)
+ 	do
+-	    F=$(basename $link | sed s/S[0-9][0-9]//)
++	    F=$(basename $link | sed 's/S\?[0-9][0-9]_\?//')
+ 	    case $F in
+ 		*.sql)
+                 action "Loading $F into mysql" perl -e '

@@ -1,16 +1,17 @@
-# $Id: e-smith-mysql.spec,v 1.9 2010/06/07 14:04:07 filippocarletti Exp $
+# $Id: e-smith-mysql.spec,v 1.10 2010/10/28 18:15:40 slords Exp $
 
 Summary: e-smith specific mysql configuration and templates.
 %define name e-smith-mysql
 Name: %{name}
 %define version 2.2.0
-%define release 4
+%define release 5
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-mysql-2.2.0-fixLogging.patch
+Patch1: e-smith-mysql-2.2.0-fix_number_strip.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: mysql-server
@@ -21,6 +22,9 @@ BuildRequires: e-smith-devtools >= 1.13.1-03
 AutoReqProv: no
 
 %changelog
+* Thu Oct 28 2010 Shad L. Lords <slords@mail.com> 2.2.0-5.sme
+- Fix stripping of starting numbers from script [SME: 6316]
+
 * Mon Jun  7 2010 Filippo Carletti <filippo.carletti@gmail.com> 2.2.0-4.sme
 - Fix %postun typo [SME: 6030]
 
@@ -676,6 +680,7 @@ mysql.
 %prep
 %setup
 %patch0 -p1
+%patch1 -p1
 
 %build
 mkdir -p root/etc/e-smith/sql/init
